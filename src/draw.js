@@ -39,3 +39,10 @@ const drawSnake=function(snake) {
 const drawFood=function(food) {
   paintCell(food,"food");
 }
+
+const displayGameOver=function(){
+  let gameResult = document.createElement('h2');
+  gameResult.innerText = "Game Over. Press R for replay";
+  let displayArea = document.getElementById('hidden_tail');
+  displayArea.appendChild(gameResult);
+}

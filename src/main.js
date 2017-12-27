@@ -1,7 +1,7 @@
 let snake=undefined;
 let food=undefined;
-let numberOfRows=60;
-let numberOfCols=120;
+let noOfRows=60;
+let noOfCols=120;
 
 let animator=undefined;
 
@@ -14,11 +14,12 @@ const animateSnake=function() {
   paintHead(head);
   if(head.isSameCoordAs(food)) {
     snake.grow();
-    createFood(numberOfRows,numberOfCols);
+    createFood(noOfRows,noOfCols);
     drawFood(food);
   }
   if(isGameOver()){
     clearInterval(animator);
+    displayGameOver();
   }
 }
 
@@ -33,6 +34,9 @@ const changeSnakeDirection=function(event) {
     case "KeyC":
       snake.grow();
       break;
+    case "KeyR":
+        location.reload();
+        break;
     default:
   }
 }
@@ -53,8 +57,8 @@ const createSnake=function() {
   snake=new Snake(head,body);
 }
 
-const createFood=function(numberOfRows,numberOfCols) {
-  food=generateRandomPosition(numberOfCols,numberOfRows);
+const createFood=function(noOfRows,noOfCols) {
+  food=generateRandomPosition(noOfCols,noOfRows);
 }
 
 const isNotInRange=function(position,min,max){
@@ -62,15 +66,15 @@ const isNotInRange=function(position,min,max){
 }
 
 const isGameOver=function() {
-  return isSnakeEatItself()||isSnakeHitWall();
+  return doesSnakeEatItself()||doesSnakeHitWall();
 }
 
-const isSnakeHitWall=function() {
+const doesSnakeHitWall=function() {
   let head = snake.head.getCoord();
-  return isNotInRange(head[0],0,numberOfCols-1)||isNotInRange(head[1],0,numberOfRows-1);
+  return isNotInRange(head[0],0,noOfCols-1)||isNotInRange(head[1],0,noOfRows-1);
 }
 
-const isSnakeEatItself=function() {
+const doesSnakeEatItself=function() {
   return snake.body.some(function(bodyPart){
     return snake.head.isSameCoordAs(bodyPart);
   });
@@ -78,9 +82,9 @@ const isSnakeEatItself=function() {
 
 const startGame=function() {
   createSnake();
-  drawGrids(numberOfRows,numberOfCols);
+  drawGrids(noOfRows,noOfCols);
   drawSnake(snake);
-  createFood(numberOfRows,numberOfCols);
+  createFood(noOfRows,noOfCols);
   drawFood(food);
   addKeyListener();
   animator=setInterval(animateSnake,140);
