@@ -57,7 +57,20 @@ const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
 }
 
+const isNotInRange=function(position,min,max){
+  return position<=min||position>=max;
+}
+
 const isGameOver=function() {
+  return isSnakeEatItself()||isSnakeHitWall();
+}
+
+const isSnakeHitWall=function() {
+  let head = snake.head.getCoord();
+  return isNotInRange(head[0],0,numberOfCols-1)||isNotInRange(head[1],0,numberOfRows-1);
+}
+
+const isSnakeEatItself=function() {
   return snake.body.some(function(bodyPart){
     return snake.head.isSameCoordAs(bodyPart);
   });
