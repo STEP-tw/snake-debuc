@@ -42,7 +42,7 @@ const drawFood=function(food) {
 
 const displayGameOver=function(){
   let gameResult = document.createElement('h2');
-  gameResult.innerText = "Game Over. Press R for restart";
+  gameResult.innerText = "Game Over. Press R to restart the game";
   let displayArea = document.getElementById('hidden_tail');
   displayArea.appendChild(gameResult);
 }
