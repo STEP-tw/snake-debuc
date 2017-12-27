@@ -17,6 +17,9 @@ const animateSnake=function() {
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
   }
+  if(isGameOver()){
+    clearInterval(animator);
+  }
 }
 
 const changeSnakeDirection=function(event) {
@@ -52,6 +55,12 @@ const createSnake=function() {
 
 const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
+}
+
+const isGameOver=function() {
+  return snake.body.some(function(bodyPart){
+    return snake.head.isSameCoordAs(bodyPart);
+  });
 }
 
 const startGame=function() {
