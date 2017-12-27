@@ -66,18 +66,12 @@ const isNotInRange=function(position,min,max){
 }
 
 const isGameOver=function() {
-  return doesSnakeEatItself()||doesSnakeHitWall();
+  return snake.doesEatItself()||doesSnakeHitWall();
 }
 
 const doesSnakeHitWall=function() {
   let head = snake.head.getCoord();
   return isNotInRange(head[0],0,noOfCols-1)||isNotInRange(head[1],0,noOfRows-1);
-}
-
-const doesSnakeEatItself=function() {
-  return snake.body.some(function(bodyPart){
-    return snake.head.isSameCoordAs(bodyPart);
-  });
 }
 
 const startGame=function() {
