@@ -18,6 +18,8 @@ const animateSnake=function() {
     drawFood(food);
   }
   if(isGameOver()){
+    paintBody(oldTail);
+    paintHead(oldHead);
     clearInterval(animator);
     displayGameOver();
   }
@@ -62,7 +64,7 @@ const createFood=function(noOfRows,noOfCols) {
 }
 
 const isNotInRange=function(position,min,max){
-  return position<=min||position>=max;
+  return position<min||position>=max;
 }
 
 const isGameOver=function() {
@@ -71,7 +73,7 @@ const isGameOver=function() {
 
 const doesSnakeHitWall=function() {
   let head = snake.head.getCoord();
-  return isNotInRange(head[0],0,noOfCols-1)||isNotInRange(head[1],0,noOfRows-1);
+  return isNotInRange(head[0],0,noOfCols)||isNotInRange(head[1],0,noOfRows);
 }
 
 const startGame=function() {
