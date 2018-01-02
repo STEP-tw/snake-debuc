@@ -25,6 +25,16 @@
   border-radius: 50%;
 }
 
+.super-food {
+  background-color: green;
+  border-radius: 80%;
+}
+
+#score {
+  font-size: 40px;
+  text-align: center;
+}
+
 h2 {
   text-align: center;
   font-family: arial;

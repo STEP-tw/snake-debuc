@@ -37,12 +37,22 @@ const drawSnake=function(snake) {
 }
 
 const drawFood=function(food) {
-  paintCell(food,"food");
+  if(food.isSuperFood())
+    paintCell(food.getPosition(),"super-food");
+  else{
+    paintCell(food.getPosition(),"food");
+  }
+}
+
+const updateScore=function(score){
+  let div = document.getElementById('score');
+  let gameScore = `<h3>Score: ${score}</h3>`;
+  div.innerHTML = gameScore;
 }
 
 const displayGameOver=function(){
   let gameResult = document.createElement('h2');
   gameResult.innerText = "Game Over. Press R to restart the game";
-  let displayArea = document.getElementById('hidden_tail');
+  let displayArea = document.getElementById('result');
   displayArea.appendChild(gameResult);
 }
